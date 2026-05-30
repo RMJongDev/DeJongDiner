@@ -1,0 +1,118 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e6]:
+    - paragraph [ref=e7]: Una serata italiana in famiglia
+    - heading "De Jong Diner" [level=1] [ref=e8]
+    - paragraph [ref=e9]: Editie II · Familie De Jong
+    - separator [ref=e10]
+    - generic [ref=e11]:
+      - strong [ref=e12]: Zaterdag 6 juni 2026
+      - text: Groeneweg 9, Hummelo
+      - text: Inloop 15:00 · Aan tafel 17:00
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - paragraph [ref=e19]: Eerste gang
+      - heading "Aperitivo" [level=2] [ref=e20]
+      - generic [ref=e22]: ✦
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - heading "Vlees & Kaas Plank" [level=3] [ref=e25]
+          - paragraph [ref=e26]:
+            - text: Pecorino · salami & charcuterie · bruschetta
+            - text: focaccia · olijven · Parmezaan chunks
+        - generic [ref=e27]:
+          - heading "Vegetarische Plank" [level=3] [ref=e28]
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - generic [ref=e31]: Gegrilde groenten
+              - generic [ref=e32]: Paprika & courgette
+            - generic [ref=e34]: vegan
+          - generic [ref=e35]:
+            - generic [ref=e36]:
+              - generic [ref=e37]: Bruschetta tomaat
+              - generic [ref=e38]: Tomaat & basilicum
+            - generic [ref=e40]: vegan
+          - generic [ref=e41]:
+            - generic [ref=e42]:
+              - generic [ref=e43]: Bruschetta ricotta
+              - generic [ref=e44]: Ricotta & citroen
+            - generic [ref=e46]: veg
+          - generic [ref=e47]:
+            - generic [ref=e48]:
+              - generic [ref=e49]: Burrata
+              - generic [ref=e50]: Tomaten & basilicumolie
+            - generic [ref=e52]: veg
+      - generic [ref=e53]:
+        - heading "Versgebakken Focaccia" [level=3] [ref=e54]
+        - generic [ref=e55]:
+          - generic [ref=e56]: Rozemarijn & zeezout
+          - generic [ref=e58]: vegan
+        - generic [ref=e59]:
+          - generic [ref=e60]: Tomaat & basilicum
+          - generic [ref=e62]: vegan
+        - generic [ref=e63]:
+          - generic [ref=e64]: Rode ui, balsamico & tijm
+          - generic [ref=e66]: vegan
+        - paragraph [ref=e67]: Geserveerd met goede olijfolie en zeezout
+    - generic [ref=e68]:
+      - paragraph [ref=e69]: Tweede gang
+      - heading "Pizza Ronde" [level=2] [ref=e70]
+      - generic [ref=e72]: ✦
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - generic [ref=e75]: Marinara
+          - generic [ref=e76]: Tomatensaus · knoflook · oregano · basilicum · olijfolie
+          - generic [ref=e77]: vegan
+        - generic [ref=e78]:
+          - generic [ref=e79]: Oro di Bufala
+          - generic [ref=e80]: Gele tomatenbasis · buffelmozzarella · basilicum · olijfolie
+          - generic [ref=e81]: veg
+        - generic [ref=e82]:
+          - generic [ref=e83]: Mortadella
+          - generic [ref=e84]: Pizza bianca · fiordilatte · mortadella · pistache · burrata
+    - generic [ref=e86]:
+      - paragraph [ref=e87]: Hoofdgerecht
+      - heading "Il Principale" [level=2] [ref=e88]
+      - generic [ref=e90]: ✦
+      - generic [ref=e91]:
+        - generic [ref=e92]:
+          - heading "Stracotto di Manzo" [level=3] [ref=e93]
+          - paragraph [ref=e94]: Langzaam gegaard rundvlees in tomaat & rode wijn
+          - paragraph [ref=e95]: Wortel · ui · bleekselderij · knoflook · rozemarijn · laurier
+          - paragraph [ref=e96]:
+            - text: Afgemaakt met
+            - emphasis [ref=e97]: gremolata
+            - text: van citroenrasp, peterselie & knoflook.
+            - text: Geserveerd met romige polenta.
+        - generic [ref=e98]:
+          - heading "Melanzane vegan" [level=3] [ref=e99]
+          - paragraph [ref=e100]: Gegrilde aubergine met tomatensaus
+          - paragraph [ref=e101]:
+            - text: Aubergine · tomatensaus · basilicum
+            - text: olijfolie · pijnboompitten
+          - paragraph [ref=e102]: Zonder mozzarella, Parmezaan of burrata
+    - generic [ref=e103]:
+      - paragraph [ref=e104]: Bijgerechten
+      - heading "Contorni" [level=2] [ref=e105]
+      - generic [ref=e107]: ✦
+      - generic [ref=e108]:
+        - generic [ref=e110]:
+          - generic [ref=e111]: Insalata Toscana vegan
+          - generic [ref=e112]:
+            - text: Little gem · tomaat · witte bonen · rode ui · citroendressing
+            - emphasis [ref=e113]: Parmezaan apart geserveerd
+        - generic [ref=e115]:
+          - generic [ref=e116]: Extra Brood vegan
+          - generic [ref=e117]: Focaccia & pizza bianca — voor bij de stracotto en om te delen
+    - generic [ref=e118]:
+      - paragraph [ref=e119]: Dessert
+      - heading "Il Dolce" [level=2] [ref=e120]
+      - generic [ref=e122]: ✦
+      - generic [ref=e123]:
+        - generic [ref=e124]:
+          - heading "Tiramisu" [level=3] [ref=e125]
+          - paragraph [ref=e126]: Individueel geserveerd in kleine bakjes
+        - generic [ref=e127]:
+          - heading "Affogato vegan" [level=3] [ref=e128]
+          - paragraph [ref=e129]: Vegan ijs overgoten met een shot espresso
+    - paragraph [ref=e131]: vegan volledig plantaardig veg vegetarisch Allergieën of dieetwensen? Spreek een van de hosts aan.
+  - contentinfo [ref=e136]: De Jong Diner · Familie De Jong · Hummelo, 6 juni 2026

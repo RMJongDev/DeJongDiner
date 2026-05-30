@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De Jong Diner — Menu</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap');
+
+    /* ── Pagina-instelling ── */
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --rood:        #8B1A2B;
+      --rood-donker: #5C1119;
+      --groen:       #3A5438;
+      --terracotta:  #B85C43;
+      --goud:        #A07C28;
+      --goud-licht:  #D4AF55;
+      --room:        #FAF4EC;
+      --room-donker: #EDE3D2;
+      --room-border: #D9CEBA;
+      --tekst:       #1E1510;
+      --tekst-zacht: #5A4A40;
+
+      --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --sans:  'Lato', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html, body {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--room);
+      color: var(--tekst);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 10pt;
+      line-height: 1.65;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── Italiaanse vlag balk ── */
+    .flag-bar {
+      display: flex;
+      height: 7px;
+    }
+    .flag-bar .g { flex: 1; background: #009246; }
+    .flag-bar .w { flex: 1; background: #ffffff; }
+    .flag-bar .r { flex: 1; background: #CE2B37; }
+
+    /* ── Cover / Header ── */
+    .cover {
+      background-color: var(--rood-donker);
+      color: var(--room);
+      text-align: center;
+      padding: 28mm 20mm 22mm;
+      position: relative;
+    }
+
+    .cover-ornament {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 9pt;
+      letter-spacing: 0.25em;
+      color: var(--goud-licht);
+      text-transform: uppercase;
+      margin-bottom: 6mm;
+    }
+
+    .cover h1 {
+      font-family: var(--serif);
+      font-size: 38pt;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 3mm;
+    }
+
+    .cover .subtitel {
+      font-family: var(--sans);
+      font-size: 8.5pt;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--room-donker);
+      margin-bottom: 10mm;
+    }
+
+    .cover-lijn {
+      width: 60mm;
+      margin: 0 auto 10mm;
+      border: none;
+      border-top: 1px solid var(--goud-licht);
+    }
+
+    .cover .meta {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 10pt;
+      color: var(--room-donker);
+      line-height: 1.8;
+    }
+
+    .cover .meta strong {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--goud-licht);
+    }
+
+    /* ── Lichaam ── */
+    .body {
+      padding: 14mm 22mm 12mm;
+    }
+
+    /* ── Gang-koptekst ── */
+    .gang {
+      margin-bottom: 11mm;
+    }
+
+    .gang-label {
+      font-family: var(--sans);
+      font-size: 6.5pt;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1mm;
+    }
+
+    .gang h2 {
+      font-family: var(--serif);
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--rood);
+      margin-bottom: 1.5mm;
+    }
+
+    .gang-ondertitel {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 9.5pt;
+      color: var(--tekst-zacht);
+      margin-bottom: 4mm;
+    }
+
+    /* ── Scheidingslijn met ornament ── */
+    .scheiding {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+      margin: 3mm 0 5mm;
+      color: var(--goud);
+    }
+    .scheiding::before,
+    .scheiding::after {
+      content: '';
+      flex: 1;
+      border-top: 1px solid var(--room-border);
+    }
+    .scheiding-ornament {
+      font-size: 9pt;
+      letter-spacing: 3pt;
+    }
+
+    /* ── Gerecht-rij ── */
+    .gerecht {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 2.5mm 0;
+      border-bottom: 1px dotted var(--room-border);
+    }
+
+    .gerecht:last-child {
+      border-bottom: none;
+    }
+
+    .gerecht-naam {
+      font-family: var(--serif);
+      font-size: 11pt;
+      font-weight: 600;
+      color: var(--tekst);
+    }
+
+    .gerecht-naam em {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--tekst-zacht);
+      font-size: 9.5pt;
+    }
+
+    .gerecht-omschrijving {
+      font-size: 8.5pt;
+      color: var(--tekst-zacht);
+      margin-top: 1mm;
+      line-height: 1.5;
+    }
+
+    .gerecht-rechts {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+      flex-shrink: 0;
+      margin-left: 4mm;
+    }
+
+    /* ── Tags ── */
+    .tag {
+      font-family: var(--sans);
+      font-size: 5.5pt;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1pt 5pt;
+      border-radius: 2pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .tag-vegan { background: var(--groen); color: #fff; }
+    .tag-veg   { background: #5C7A5D;      color: #fff; }
+
+    /* ── Ingrediënten-lijst ── */
+    .ingredienten {
+      font-size: 8pt;
+      color: var(--tekst-zacht);
+      font-style: italic;
+      margin-top: 1.5mm;
+      line-height: 1.6;
+    }
+
+    /* ── Blok: grote sectie ── */
+    .blok {
+      background: #fff;
+      border: 1px solid var(--room-border);
+      border-left: 4pt solid var(--rood);
+      padding: 5mm 6mm 4mm;
+      margin-bottom: 5mm;
+    }
+    .blok.groen  { border-left-color: var(--groen); }
+    .blok.goud   { border-left-color: var(--goud); }
+    .blok.terra  { border-left-color: var(--terracotta); }
+
+    .blok h3 {
+      font-family: var(--serif);
+      font-size: 12pt;
+      font-weight: 700;
+      color: var(--groen);
+      margin-bottom: 2mm;
+    }
+    .blok.rood h3 { color: var(--rood); }
+    .blok.goud h3 { color: var(--goud); }
+    .blok.terra h3 { color: var(--terracotta); }
+
+    /* ── Pizza tabel ── */
+    .pizza-rij {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3mm;
+      margin-top: 3mm;
+    }
+
+    .pizza-kaart {
+      background: var(--room);
+      border: 1px solid var(--room-border);
+      border-top: 3pt solid var(--terracotta);
+      padding: 4mm;
+      text-align: center;
+    }
+
+    .pizza-naam {
+      font-family: var(--serif);
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--rood);
+      margin-bottom: 1.5mm;
+    }
+
+    .pizza-desc {
+      font-size: 7.5pt;
+      color: var(--tekst-zacht);
+      line-height: 1.5;
+    }
+
+    /* ── Horizontale twee-kolommen ── */
+    .twee-kolom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+    }
+
+    /* ── Kolofon / footer ── */
+    .footer {
+      background: var(--rood-donker);
+      color: var(--room-donker);
+      text-align: center;
+      padding: 6mm 20mm;
+      font-size: 7.5pt;
+      letter-spacing: 0.12em;
+      font-family: var(--sans);
+    }
+
+    .footer .goud {
+      color: var(--goud-licht);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 9pt;
+    }
+
+    /* ── Dieetwensen noot ── */
+    .noot {
+      font-size: 7.5pt;
+      color: var(--tekst-zacht);
+      border-top: 1px solid var(--room-border);
+      padding-top: 3mm;
+      margin-top: 3mm;
+      font-style: italic;
+    }
+
+    /* ── Afdruk-specifiek ── */
+    @media print {
+      html, body {
+        width: 210mm;
+        height: 297mm;
+      }
+      .cover {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Italiaanse vlag -->
+  <div class="flag-bar">
+    <div class="g"></div>
+    <div class="w"></div>
+    <div class="r"></div>
+  </div>
+
+  <!-- Cover -->
+  <header class="cover">
+    <p class="cover-ornament">Una serata italiana in famiglia</p>
+    <h1>De Jong Diner</h1>
+    <p class="subtitel">Editie II &nbsp;·&nbsp; Familie De Jong</p>
+    <hr class="cover-lijn">
+    <div class="meta">
+      <strong>Zaterdag 6 juni 2026</strong><br>
+      Groeneweg 9, Hummelo<br>
+      Inloop 15:00 &nbsp;·&nbsp; Aan tafel 17:00
+    </div>
+  </header>
+
+  <!-- Italiaanse vlag -->
+  <div class="flag-bar">
+    <div class="g"></div>
+    <div class="w"></div>
+    <div class="r"></div>
+  </div>
+
+  <!-- Menu-inhoud -->
+  <main class="body">
+
+    <!-- Aperitivo -->
+    <div class="gang">
+      <p class="gang-label">Eerste gang</p>
+      <h2>Aperitivo</h2>
+      <div class="scheiding"><span class="scheiding-ornament">✦</span></div>
+
+      <div class="twee-kolom">
+
+        <!-- Vlees & kaas -->
+        <div class="blok terra">
+          <h3>Vlees &amp; Kaas Plank</h3>
+          <p class="ingredienten">
+            Pecorino · salami &amp; charcuterie · bruschetta<br>
+            focaccia · olijven · Parmezaan chunks
+          </p>
+        </div>
+
+        <!-- Vegetarisch -->
+        <div class="blok groen">
+          <h3>Vegetarische Plank</h3>
+          <div class="gerecht">
+            <div>
+              <div class="gerecht-naam">Gegrilde groenten</div>
+              <div class="gerecht-omschrijving">Paprika &amp; courgette</div>
+            </div>
+            <div class="gerecht-rechts"><span class="tag tag-vegan">vegan</span></div>
+          </div>
+          <div class="gerecht">
+            <div>
+              <div class="gerecht-naam">Bruschetta tomaat</div>
+              <div class="gerecht-omschrijving">Tomaat &amp; basilicum</div>
+            </div>
+            <div class="gerecht-rechts"><span class="tag tag-vegan">vegan</span></div>
+          </div>
+          <div class="gerecht">
+            <div>
+              <div class="gerecht-naam">Bruschetta ricotta</div>
+              <div class="gerecht-omschrijving">Ricotta &amp; citroen</div>
+            </div>
+            <div class="gerecht-rechts"><span class="tag tag-veg">veg</span></div>
+          </div>
+          <div class="gerecht">
+            <div>
+              <div class="gerecht-naam">Burrata</div>
+              <div class="gerecht-omschrijving">Tomaten &amp; basilicumolie</div>
+            </div>
+            <div class="gerecht-rechts"><span class="tag tag-veg">veg</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Focaccia -->
+      <div class="blok" style="margin-top:0;">
+        <h3 style="font-family:var(--serif);font-size:11pt;color:var(--rood);font-weight:700;margin-bottom:2mm;">Versgebakken Focaccia</h3>
+        <div class="gerecht">
+          <div class="gerecht-naam">Rozemarijn &amp; zeezout</div>
+          <div class="gerecht-rechts"><span class="tag tag-vegan">vegan</span></div>
+        </div>
+        <div class="gerecht">
+          <div class="gerecht-naam">Tomaat &amp; basilicum</div>
+          <div class="gerecht-rechts"><span class="tag tag-vegan">vegan</span></div>
+        </div>
+        <div class="gerecht">
+          <div class="gerecht-naam">Rode ui, balsamico &amp; tijm</div>
+          <div class="gerecht-rechts"><span class="tag tag-vegan">vegan</span></div>
+        </div>
+        <p class="noot">Geserveerd met goede olijfolie en zeezout</p>
+      </div>
+    </div>
+
+    <!-- Pizza -->
+    <div class="gang">
+      <p class="gang-label">Tweede gang</p>
+      <h2>Pizza Ronde</h2>
+      <div class="scheiding"><span class="scheiding-ornament">✦</span></div>
+
+      <div class="pizza-rij">
+        <div class="pizza-kaart">
+          <div class="pizza-naam">Marinara</div>
+          <div class="pizza-desc">Tomatensaus · knoflook · oregano · basilicum · olijfolie</div>
+          <div style="margin-top:2mm;"><span class="tag tag-vegan">vegan</span></div>
+        </div>
+        <div class="pizza-kaart">
+          <div class="pizza-naam">Oro di Bufala</div>
+          <div class="pizza-desc">Gele tomatenbasis · buffelmozzarella · basilicum · olijfolie</div>
+          <div style="margin-top:2mm;"><span class="tag tag-veg">veg</span></div>
+        </div>
+        <div class="pizza-kaart">
+          <div class="pizza-naam">Mortadella</div>
+          <div class="pizza-desc">Pizza bianca · fiordilatte · mortadella · pistache · burrata</div>
+          <div style="margin-top:2mm;">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hoofdgerecht -->
+    <div class="gang">
+      <p class="gang-label">Hoofdgerecht</p>
+      <h2>Il Principale</h2>
+      <div class="scheiding"><span class="scheiding-ornament">✦</span></div>
+
+      <div class="twee-kolom">
+
+        <div class="blok goud">
+          <h3>Stracotto di Manzo</h3>
+          <p class="ingredienten" style="font-style:normal;color:var(--tekst-zacht);">Langzaam gegaard rundvlees in tomaat &amp; rode wijn</p>
+          <p class="ingredienten" style="margin-top:2mm;">
+            Wortel · ui · bleekselderij · knoflook · rozemarijn · laurier
+          </p>
+          <p class="ingredienten" style="margin-top:2mm;">
+            Afgemaakt met <em style="font-style:normal;font-weight:700;color:var(--goud);">gremolata</em> van citroenrasp,
+            peterselie &amp; knoflook.<br>
+            Geserveerd met romige polenta.
+          </p>
+        </div>
+
+        <div class="blok groen">
+          <h3>Melanzane <span class="tag tag-vegan" style="vertical-align:middle;">vegan</span></h3>
+          <p class="ingredienten" style="font-style:normal;color:var(--tekst-zacht);">Gegrilde aubergine met tomatensaus</p>
+          <p class="ingredienten" style="margin-top:2mm;">
+            Aubergine · tomatensaus · basilicum<br>
+            olijfolie · pijnboompitten
+          </p>
+          <p class="noot" style="margin-top:3mm;">Zonder mozzarella, Parmezaan of burrata</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bijgerechten -->
+    <div class="gang">
+      <p class="gang-label">Bijgerechten</p>
+      <h2>Contorni</h2>
+      <div class="scheiding"><span class="scheiding-ornament">✦</span></div>
+
+      <div class="blok" style="border-left-color:var(--terracotta);">
+        <div class="gerecht">
+          <div>
+            <div class="gerecht-naam">Insalata Toscana <span class="tag tag-vegan" style="vertical-align:middle;">vegan</span></div>
+            <div class="gerecht-omschrijving">Little gem · tomaat · witte bonen · rode ui · citroendressing<br>
+            <em>Parmezaan apart geserveerd</em></div>
+          </div>
+        </div>
+        <div class="gerecht">
+          <div>
+            <div class="gerecht-naam">Extra Brood <span class="tag tag-vegan" style="vertical-align:middle;">vegan</span></div>
+            <div class="gerecht-omschrijving">Focaccia &amp; pizza bianca — voor bij de stracotto en om te delen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dessert -->
+    <div class="gang">
+      <p class="gang-label">Dessert</p>
+      <h2>Il Dolce</h2>
+      <div class="scheiding"><span class="scheiding-ornament">✦</span></div>
+
+      <div class="twee-kolom">
+
+        <div class="blok" style="border-left-color:var(--rood);">
+          <h3 style="font-family:var(--serif);font-size:12pt;font-weight:700;color:var(--rood);margin-bottom:2mm;">Tiramisu</h3>
+          <p class="ingredienten" style="font-style:italic;color:var(--tekst-zacht);">
+            Individueel geserveerd in kleine bakjes
+          </p>
+        </div>
+
+        <div class="blok groen">
+          <h3>Affogato <span class="tag tag-vegan" style="vertical-align:middle;">vegan</span></h3>
+          <p class="ingredienten" style="font-style:italic;color:var(--tekst-zacht);">
+            Vegan ijs overgoten met een shot espresso
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Noot onderin -->
+    <div style="border-top:2px solid var(--room-border);padding-top:4mm;margin-top:2mm;">
+      <p style="font-size:7pt;color:var(--tekst-zacht);font-style:italic;text-align:center;letter-spacing:0.05em;">
+        <span class="tag tag-vegan">vegan</span>&nbsp; volledig plantaardig &nbsp;&nbsp;
+        <span class="tag tag-veg">veg</span>&nbsp; vegetarisch &nbsp;&nbsp;
+        Allergieën of dieetwensen? Spreek een van de hosts aan.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <div class="flag-bar">
+    <div class="g"></div>
+    <div class="w"></div>
+    <div class="r"></div>
+  </div>
+  <footer class="footer">
+    <span class="goud">De Jong Diner</span> &nbsp;·&nbsp;
+    Familie De Jong &nbsp;·&nbsp; Hummelo, 6 juni 2026
+  </footer>
+
+</body>
+</html>

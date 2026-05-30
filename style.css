@@ -1,0 +1,304 @@
+/* =====================================================
+   De Jong Diner — Italiaanse Huisstijl
+   Kleurpalet: terracotta, room, wijnrood, olijfgroen
+   ===================================================== */
+
+/* --- Typografie & Reset --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --rood:        #9B2335;   /* Chianti rood */
+  --rood-donker: #6B1824;   /* diep bordeaux */
+  --groen:       #3D5A3E;   /* olijfgroen */
+  --groen-licht: #5C7A5D;
+  --terracotta:  #C0694E;
+  --goud:        #B8962E;
+  --room:        #FAF4EC;   /* warm ivoor */
+  --room-donker: #EDE5D8;
+  --tekst:       #2A1F1A;   /* bijna-zwart warm */
+  --tekst-zacht: #6B5B52;
+  --wit:         #FFFFFF;
+
+  --font-serif:  'Playfair Display', Georgia, serif;
+  --font-sans:   'Lato', 'Helvetica Neue', sans-serif;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--room);
+  color: var(--tekst);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* --- Typografie --- */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: 3rem;   color: var(--rood-donker); }
+h2 { font-size: 2rem;   color: var(--rood); }
+h3 { font-size: 1.4rem; color: var(--groen); }
+h4 { font-size: 1.1rem; color: var(--tekst); font-weight: 400; font-style: italic; }
+
+p { margin-bottom: 1rem; }
+
+em {
+  font-style: italic;
+  color: var(--tekst-zacht);
+}
+
+strong {
+  font-weight: 700;
+  color: var(--tekst);
+}
+
+/* --- Layout --- */
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --- Header --- */
+
+.site-header {
+  background-color: var(--rood-donker);
+  color: var(--room);
+  text-align: center;
+  padding: 3rem 2rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.site-header::before,
+.site-header::after {
+  content: '';
+  display: block;
+  height: 6px;
+  background: linear-gradient(90deg, var(--groen) 33%, var(--wit) 33%, var(--wit) 66%, var(--rood) 66%);
+}
+
+.site-header::before { margin-bottom: 2rem; }
+.site-header::after  { margin-top: 2rem; }
+
+.site-header h1 {
+  color: var(--room);
+  font-size: 3.5rem;
+  letter-spacing: 0.03em;
+}
+
+.site-header .ondertitel {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--room-donker);
+  margin-top: 0.5rem;
+}
+
+/* --- Navigatie --- */
+
+.nav {
+  background-color: var(--groen);
+  text-align: center;
+  padding: 0.75rem 2rem;
+}
+
+.nav a {
+  color: var(--room);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 1.25rem;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.nav a:hover {
+  color: var(--goud);
+  border-bottom-color: var(--goud);
+}
+
+/* --- Sectie --- */
+
+.sectie {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--room-donker);
+}
+
+.sectie:last-of-type {
+  border-bottom: none;
+}
+
+.sectie-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.5rem;
+}
+
+/* --- Menu kaart / kaarten --- */
+
+.kaart {
+  background: var(--wit);
+  border-radius: 4px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid var(--rood);
+  box-shadow: 0 2px 12px rgba(42, 31, 26, 0.08);
+}
+
+.kaart.groen  { border-left-color: var(--groen); }
+.kaart.goud   { border-left-color: var(--goud); }
+.kaart.terra  { border-left-color: var(--terracotta); }
+
+/* --- Tags & labels --- */
+
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.tag-vegan  { background-color: var(--groen);    color: var(--wit); }
+.tag-veg    { background-color: var(--groen-licht); color: var(--wit); }
+.tag-nutvrij { background-color: var(--goud);     color: var(--wit); }
+
+/* --- Divisor / ornament --- */
+
+.divisor {
+  text-align: center;
+  margin: 2rem 0;
+  color: var(--goud);
+  font-size: 1.4rem;
+  letter-spacing: 0.5rem;
+}
+
+/* --- Tabel --- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+thead {
+  background-color: var(--rood-donker);
+  color: var(--room);
+}
+
+thead th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--room-donker);
+}
+
+tbody td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--room-donker);
+}
+
+/* --- Knop --- */
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn-primair {
+  background-color: var(--rood);
+  color: var(--wit);
+}
+.btn-primair:hover { background-color: var(--rood-donker); }
+
+.btn-secundair {
+  background-color: transparent;
+  color: var(--groen);
+  border: 2px solid var(--groen);
+}
+.btn-secundair:hover {
+  background-color: var(--groen);
+  color: var(--wit);
+}
+
+/* --- Citaat / quote --- */
+
+blockquote {
+  border-left: 4px solid var(--goud);
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background-color: var(--room-donker);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--tekst-zacht);
+}
+
+/* --- Footer --- */
+
+.site-footer {
+  background-color: var(--tekst);
+  color: var(--tekst-zacht);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.site-footer span {
+  color: var(--goud);
+  font-family: var(--font-serif);
+  font-style: italic;
+}
