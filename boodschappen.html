@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boodschappenlijst - Familie De Jong Dag</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --rood: #8B1A2B;
+      --rood-donker: #5C1119;
+      --groen: #3A5438;
+      --terracotta: #B85C43;
+      --goud: #A07C28;
+      --room: #FAF4EC;
+      --room-donker: #EDE3D2;
+      --room-border: #D9CEBA;
+      --tekst: #1E1510;
+      --tekst-zacht: #5A4A40;
+      --wit: #FFFFFF;
+      --schaduw: rgba(30, 21, 16, 0.12);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--room);
+      color: var(--tekst);
+      font-family: var(--sans);
+      line-height: 1.5;
+    }
+
+    .flag-bar {
+      display: flex;
+      height: 7px;
+    }
+
+    .flag-bar span {
+      flex: 1;
+    }
+
+    .flag-bar .g { background: #009246; }
+    .flag-bar .w { background: #FFFFFF; }
+    .flag-bar .r { background: #CE2B37; }
+
+    header {
+      background: var(--rood-donker);
+      color: var(--room);
+      padding: 28px 20px 24px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #D4AF55;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--wit);
+      font-family: var(--serif);
+      font-size: clamp(2.1rem, 9vw, 3.4rem);
+      line-height: 1;
+    }
+
+    .meta {
+      margin: 12px 0 0;
+      color: var(--room-donker);
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(250, 244, 236, 0.96);
+      border-bottom: 1px solid var(--room-border);
+      box-shadow: 0 4px 18px var(--schaduw);
+      padding: 12px 14px;
+      backdrop-filter: blur(12px);
+    }
+
+    .toolbar-inner {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+      max-width: 1040px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+      color: var(--tekst-zacht);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .progress {
+      overflow: hidden;
+      height: 9px;
+      background: var(--room-donker);
+      border-radius: 999px;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--groen), var(--goud));
+      transition: width 0.2s ease;
+    }
+
+    button {
+      min-height: 42px;
+      border: 1px solid var(--room-border);
+      border-radius: 6px;
+      background: var(--wit);
+      color: var(--tekst);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0 12px;
+      white-space: nowrap;
+    }
+
+    button.primary {
+      border-color: var(--groen);
+      background: var(--groen);
+      color: var(--wit);
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 20px 14px 48px;
+    }
+
+    .quick-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+    }
+
+    .quick-nav a {
+      flex: 0 0 auto;
+      border: 1px solid var(--room-border);
+      border-radius: 999px;
+      background: var(--wit);
+      color: var(--tekst);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      text-decoration: none;
+    }
+
+    section {
+      margin-bottom: 18px;
+      border: 1px solid var(--room-border);
+      border-left: 5px solid var(--rood);
+      border-radius: 8px;
+      background: var(--wit);
+      box-shadow: 0 2px 14px var(--schaduw);
+    }
+
+    section.groen { border-left-color: var(--groen); }
+    section.goud { border-left-color: var(--goud); }
+    section.terra { border-left-color: var(--terracotta); }
+
+    .section-header {
+      padding: 18px 18px 10px;
+    }
+
+    .section-label {
+      margin: 0 0 4px;
+      color: var(--terracotta);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--rood);
+      font-family: var(--serif);
+      font-size: 1.65rem;
+      line-height: 1.15;
+    }
+
+    .note {
+      margin: 10px 0 0;
+      color: var(--tekst-zacht);
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      font-style: italic;
+    }
+
+    .group {
+      padding: 0 18px 16px;
+    }
+
+    h3 {
+      margin: 14px 0 8px;
+      color: var(--groen);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      line-height: 1.2;
+    }
+
+    .items {
+      display: grid;
+      gap: 8px;
+    }
+
+    label.item {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 10px;
+      align-items: start;
+      min-height: 44px;
+      border: 1px solid var(--room-border);
+      border-radius: 6px;
+      background: #FFFDFC;
+      padding: 10px 11px;
+      color: var(--tekst);
+    }
+
+    input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin: 1px 0 0;
+      accent-color: var(--groen);
+    }
+
+    input[type="checkbox"]:checked + span {
+      color: var(--tekst-zacht);
+      text-decoration: line-through;
+    }
+
+    .tip {
+      margin-top: 22px;
+      border: 1px solid var(--room-border);
+      border-left: 5px solid var(--goud);
+      border-radius: 8px;
+      background: var(--wit);
+      padding: 16px 18px;
+      color: var(--tekst-zacht);
+      font-family: var(--serif);
+      font-style: italic;
+    }
+
+    footer {
+      background: var(--rood-donker);
+      color: var(--room-donker);
+      padding: 18px 14px;
+      text-align: center;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    footer strong {
+      color: #D4AF55;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    @media (min-width: 760px) {
+      main {
+        padding-top: 28px;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        align-items: start;
+      }
+
+      .wide {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .toolbar-inner {
+        grid-template-columns: 1fr;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .section-header,
+      .group {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .toolbar,
+      .quick-nav {
+        display: none;
+      }
+
+      section,
+      .tip {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      input[type="checkbox"] {
+        accent-color: initial;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="flag-bar" aria-hidden="true">
+    <span class="g"></span>
+    <span class="w"></span>
+    <span class="r"></span>
+  </div>
+
+  <header>
+    <p class="eyebrow">Familie De Jong Dag</p>
+    <h1>Boodschappenlijst</h1>
+    <p class="meta">6 juni 2026 &middot; ongeveer 24 personen</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <div>
+        <div class="progress-label">
+          <span id="progressText">0 van 0 afgevinkt</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+      <button class="primary" type="button" id="shareButton">Delen</button>
+      <button type="button" id="resetButton">Alles uit</button>
+    </div>
+  </div>
+
+  <main>
+    <nav class="quick-nav" aria-label="Snel naar">
+      <a href="#aperitivo">Aperitivo</a>
+      <a href="#focaccia">Focaccia</a>
+      <a href="#pizza">Pizza</a>
+      <a href="#stracotto">Stracotto</a>
+      <a href="#melanzane">Melanzane</a>
+      <a href="#salade">Salade</a>
+      <a href="#dessert">Dessert</a>
+      <a href="#basis">Basis</a>
+    </nav>
+
+    <div class="content-grid">
+      <section id="aperitivo" class="terra">
+        <div class="section-header">
+          <p class="section-label">Aperitivo</p>
+          <h2>Houtplanken</h2>
+        </div>
+        <div class="group">
+          <h3>Vlees &amp; kaas</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="pecorino"><span>Pecorino (&plusmn;400 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="salami"><span>Salami (&plusmn;300 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="charcuterie"><span>Gemengde charcuterie (&plusmn;300 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="parmezaan-chunks"><span>Parmezaan, stuk voor chunks (&plusmn;200 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="olijven"><span>Olijven (&plusmn;400 g)</span></label>
+          </div>
+
+          <h3>Vegetarisch / vegan plank</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="paprikas"><span>Paprika's, rood &amp; geel (4-5 stuks)</span></label>
+            <label class="item"><input type="checkbox" data-key="courgette"><span>Courgette (3 stuks)</span></label>
+            <label class="item"><input type="checkbox" data-key="burrata-plank"><span>Burrata (3-4 stuks)</span></label>
+            <label class="item"><input type="checkbox" data-key="ricotta"><span>Ricotta (300 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="cherrytomaatjes"><span>Cherrytomaatjes (2 bakjes)</span></label>
+            <label class="item"><input type="checkbox" data-key="basilicum"><span>Verse basilicum (4 bosjes, verdeeld over meerdere gerechten)</span></label>
+            <label class="item"><input type="checkbox" data-key="citroenen"><span>Citroenen (6 stuks, verdeeld over meerdere gerechten)</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section id="focaccia">
+        <div class="section-header">
+          <p class="section-label">Brood</p>
+          <h2>Focaccia</h2>
+          <p class="note">3 varianten, samen bakken in grote bakken.</p>
+        </div>
+        <div class="group">
+          <h3>Basisdeeg</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="tipo-00-focaccia"><span>Bloem tipo 00 (&plusmn;3 kg)</span></label>
+            <label class="item"><input type="checkbox" data-key="gist-focaccia"><span>Droog gist (3 zakjes)</span></label>
+            <label class="item"><input type="checkbox" data-key="grof-zeezout"><span>Grof zeezout</span></label>
+            <label class="item"><input type="checkbox" data-key="olijfolie"><span>Extra vergine olijfolie (groot fles, 1 L, ook voor andere gerechten)</span></label>
+          </div>
+
+          <h3>Toppings</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="rozemarijn-focaccia"><span>Verse rozemarijn (3 takjes)</span></label>
+            <label class="item"><input type="checkbox" data-key="san-marzano-focaccia"><span>San Marzano blikken of passata (1 blik)</span></label>
+            <label class="item"><input type="checkbox" data-key="rode-uien-focaccia"><span>Rode uien (4 stuks)</span></label>
+            <label class="item"><input type="checkbox" data-key="balsamico"><span>Balsamico azijn (fles)</span></label>
+            <label class="item"><input type="checkbox" data-key="tijm"><span>Verse tijm (1 bosje)</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section id="pizza" class="terra wide">
+        <div class="section-header">
+          <p class="section-label">Pizza ronde</p>
+          <h2>12 pizza's totaal</h2>
+          <p class="note">4 Marinara &middot; 4 Oro di Bufala &middot; 4 Mortadella.</p>
+        </div>
+        <div class="group">
+          <h3>Pizzadeeg</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="tipo-00-pizza"><span>Bloem tipo 00 (2 kg, apart van focacciadeeg)</span></label>
+            <label class="item"><input type="checkbox" data-key="gist-pizza"><span>Droog gist (zie hierboven)</span></label>
+          </div>
+
+          <h3>Marinara</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="san-marzano-marinara"><span>San Marzano tomaten, blik (2 blikken)</span></label>
+            <label class="item"><input type="checkbox" data-key="knoflook"><span>Knoflook (2 bollen, verdeeld over meerdere gerechten)</span></label>
+            <label class="item"><input type="checkbox" data-key="oregano"><span>Gedroogde oregano</span></label>
+            <label class="item"><input type="checkbox" data-key="chili-olie"><span>Chili-olie (flesje)</span></label>
+            <label class="item"><input type="checkbox" data-key="vegan-kaas"><span>Vegan kaas, geraspt (&plusmn;200 g)</span></label>
+          </div>
+
+          <h3>Oro di Bufala</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="gele-tomaten"><span>Gele tomaten (&plusmn;400 g) of gele tomatenpuree</span></label>
+            <label class="item"><input type="checkbox" data-key="buffelmozzarella"><span>Buffelmozzarella (4 bollen, 125 g per bol)</span></label>
+          </div>
+
+          <h3>Mortadella</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="fiordilatte"><span>Fiordilatte mozzarella (4 bollen, 125 g per bol)</span></label>
+            <label class="item"><input type="checkbox" data-key="mortadella"><span>Mortadella, dun gesneden (&plusmn;400 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="pistachenoten"><span>Pistachenoten, ongezouten (100 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="burrata-pizza"><span>Burrata (2 stuks, ook op plank)</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section id="stracotto" class="goud">
+        <div class="section-header">
+          <p class="section-label">Hoofdgerecht</p>
+          <h2>Stracotto di Manzo</h2>
+        </div>
+        <div class="group">
+          <h3>Stoof &amp; polenta</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="rundvlees"><span>Rundvlees stoofvlees, riblappen of schouder (&plusmn;3,5 kg)</span></label>
+            <label class="item"><input type="checkbox" data-key="rode-wijn-stoof"><span>Rode wijn, vol (1 fles, drinkbare kwaliteit)</span></label>
+            <label class="item"><input type="checkbox" data-key="san-marzano-stoof"><span>San Marzano tomaten, blik (3 blikken)</span></label>
+            <label class="item"><input type="checkbox" data-key="wortel"><span>Wortel (4 stuks)</span></label>
+            <label class="item"><input type="checkbox" data-key="ui-geel"><span>Ui, geel (4 stuks)</span></label>
+            <label class="item"><input type="checkbox" data-key="bleekselderij"><span>Bleekselderij (1 stronk)</span></label>
+            <label class="item"><input type="checkbox" data-key="laurier"><span>Laurierblaadjes (6 stuks)</span></label>
+            <label class="item"><input type="checkbox" data-key="peterselie"><span>Verse peterselie (1 bosje)</span></label>
+            <label class="item"><input type="checkbox" data-key="polenta"><span>Polenta, grof of fijn (&plusmn;800 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="boter"><span>Boter (250 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="parmezaan-geraspt"><span>Parmezaan, geraspt (&plusmn;150 g, apart van charcuterieplank)</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section id="melanzane" class="groen">
+        <div class="section-header">
+          <p class="section-label">Vegan hoofdgerecht</p>
+          <h2>Melanzane</h2>
+        </div>
+        <div class="group">
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="aubergine"><span>Aubergine (6-8 stuks)</span></label>
+            <label class="item"><input type="checkbox" data-key="san-marzano-melanzane"><span>San Marzano tomaten, blik (2 blikken)</span></label>
+            <label class="item"><input type="checkbox" data-key="pijnboompitten"><span>Pijnboompitten (100 g)</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section id="salade" class="groen">
+        <div class="section-header">
+          <p class="section-label">Bijgerecht</p>
+          <h2>Insalata Toscana</h2>
+        </div>
+        <div class="group">
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="little-gem"><span>Little gem sla (6 kroppen)</span></label>
+            <label class="item"><input type="checkbox" data-key="tomaten"><span>Tomaten (500 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="witte-bonen"><span>Witte bonen, blik (3 blikken)</span></label>
+            <label class="item"><input type="checkbox" data-key="rode-ui-salade"><span>Rode ui (2 stuks, ook voor focaccia)</span></label>
+            <label class="item"><input type="checkbox" data-key="parmezaan-salade"><span>Parmezaan, geraspt (apart serveren, &plusmn;100 g)</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section id="dessert" class="goud">
+        <div class="section-header">
+          <p class="section-label">Dessert</p>
+          <h2>Tiramisu &amp; Affogato</h2>
+        </div>
+        <div class="group">
+          <h3>Tiramisu</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="mascarpone"><span>Mascarpone (1 kg)</span></label>
+            <label class="item"><input type="checkbox" data-key="eieren"><span>Eieren (12 stuks)</span></label>
+            <label class="item"><input type="checkbox" data-key="suiker"><span>Suiker (300 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="savoiardi"><span>Savoiardi, lange vingers (&plusmn;400 g)</span></label>
+            <label class="item"><input type="checkbox" data-key="espresso"><span>Espresso, sterk gezet (&plusmn;600 ml) of oploskoffie</span></label>
+            <label class="item"><input type="checkbox" data-key="marsala"><span>Marsala of amaretto (optioneel, 1 flesje)</span></label>
+            <label class="item"><input type="checkbox" data-key="cacao"><span>Cacao, ongezoet (1 blik)</span></label>
+          </div>
+
+          <h3>Vegan affogato</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="vegan-ijs"><span>Vegan ijs, bijvoorbeeld kokos of vanille (&plusmn;1 liter)</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section id="basis" class="wide">
+        <div class="section-header">
+          <p class="section-label">Basis &amp; dranken</p>
+          <h2>Apart regelen</h2>
+        </div>
+        <div class="group">
+          <h3>Altijd op tafel</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="peper"><span>Peper</span></label>
+          </div>
+
+          <h3>Dranken</h3>
+          <div class="items">
+            <label class="item"><input type="checkbox" data-key="prosecco-aperol"><span>Prosecco / Aperol voor aperitivo</span></label>
+            <label class="item"><input type="checkbox" data-key="rode-wijn-tafel"><span>Rode wijn (tafelwijn, meerdere flessen)</span></label>
+            <label class="item"><input type="checkbox" data-key="witte-wijn"><span>Witte wijn</span></label>
+            <label class="item"><input type="checkbox" data-key="fris-water"><span>Frisdrank &amp; water</span></label>
+            <label class="item"><input type="checkbox" data-key="koffie"><span>Koffie &amp; espresso (voor affogato en na het eten)</span></label>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="tip">
+      Tip: bloem tipo 00 en gist samenvoegen op een boodschap. Focaccia en pizzadeeg kunnen uit dezelfde batch.
+    </div>
+  </main>
+
+  <div class="flag-bar" aria-hidden="true">
+    <span class="g"></span>
+    <span class="w"></span>
+    <span class="r"></span>
+  </div>
+  <footer>
+    <strong>De Jong Diner</strong> &middot; Familie De Jong &middot; Hummelo, 6 juni 2026
+  </footer>
+
+  <script>
+    const storageKey = "dejongdiner-boodschappen-v1";
+    const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+    const progressText = document.getElementById("progressText");
+    const progressPercent = document.getElementById("progressPercent");
+    const progressFill = document.getElementById("progressFill");
+    const resetButton = document.getElementById("resetButton");
+    const shareButton = document.getElementById("shareButton");
+
+    function readState() {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey)) || {};
+      } catch {
+        return {};
+      }
+    }
+
+    function writeState() {
+      const state = {};
+      checkboxes.forEach((checkbox) => {
+        state[checkbox.dataset.key] = checkbox.checked;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    function updateProgress() {
+      const total = checkboxes.length;
+      const done = checkboxes.filter((checkbox) => checkbox.checked).length;
+      const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+
+      progressText.textContent = `${done} van ${total} afgevinkt`;
+      progressPercent.textContent = `${percent}%`;
+      progressFill.style.width = `${percent}%`;
+    }
+
+    function restoreState() {
+      const state = readState();
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = Boolean(state[checkbox.dataset.key]);
+      });
+      updateProgress();
+    }
+
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        writeState();
+        updateProgress();
+      });
+    });
+
+    resetButton.addEventListener("click", () => {
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+      writeState();
+      updateProgress();
+    });
+
+    shareButton.addEventListener("click", async () => {
+      const title = document.title;
+      const url = window.location.href;
+
+      if (navigator.share) {
+        await navigator.share({ title, url });
+        return;
+      }
+
+      await navigator.clipboard.writeText(url);
+      shareButton.textContent = "Link gekopieerd";
+      window.setTimeout(() => {
+        shareButton.textContent = "Delen";
+      }, 1800);
+    });
+
+    restoreState();
+  </script>
+</body>
+</html>
